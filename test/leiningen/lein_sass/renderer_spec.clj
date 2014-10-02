@@ -2,6 +2,7 @@
   (:require [clojure.test :refer :all]
             [leiningen.lein-sass.renderer :refer :all]))
 
-(testing "renderer"
-  (testing "it does stuff"
-    (is (= "" (render "body")))))
+(deftest renderer
+  (testing "Renderer"
+    (testing "does stuff"
+      (is (= "" (render "body"))))))
