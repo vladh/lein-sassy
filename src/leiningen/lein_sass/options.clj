@@ -5,7 +5,7 @@
                                 :delete-output-dir true
                                 :auto-compile-delay 250
                                 :gem-name "sass"
-                                :gem-version "3.3.0.rc.2"
+                                :gem-version "3.3.0"
                                 :style :nested
                                })
 

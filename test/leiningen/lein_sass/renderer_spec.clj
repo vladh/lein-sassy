@@ -4,5 +4,5 @@
 
 (deftest renderer
   (testing "Renderer"
-    (testing "does stuff"
+    (testing "compiles basic SASS"
       (is (= "body{background:red}\n" (render "body\n  background: red"))))))
