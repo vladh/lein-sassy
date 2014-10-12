@@ -5,4 +5,4 @@
 (deftest renderer
   (testing "Renderer"
     (testing "does stuff"
-      (is (= "" (render "body"))))))
+      (is (= "body{background:red}\n" (render "body\n  background: red"))))))
