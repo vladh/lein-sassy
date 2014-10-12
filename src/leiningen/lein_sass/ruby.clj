@@ -1,5 +1,5 @@
 (ns leiningen.lein-sass.ruby
-  (:use [cemerick.pomegranate :only [add-dependencies]])
+  (:require [cemerick.pomegranate :refer [add-dependencies]])
   (:import [org.jruby.embed ScriptingContainer LocalContextScope]
            [org.jruby RubyHash RubySymbol RubyArray]))
 

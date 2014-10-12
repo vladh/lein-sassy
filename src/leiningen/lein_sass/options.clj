@@ -17,4 +17,6 @@
     (assoc options :ignore-hooks normalized-hooks)))
 
 (defn extract-options [project]
-  (merge default-options (normalize-hooks options)))
+  (if :sass project
+    (merge default-options (normalize-hooks options))
+    (println "No sass entry found in project definition.")))

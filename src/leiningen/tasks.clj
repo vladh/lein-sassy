@@ -1,25 +1,7 @@
 (ns leiningen.tasks
   (:require [leiningen.lein-sass.renderer :refer :all]
+            [leiningen.lein-sass.options :refer :all]
             [cemerick.pomegranate :only [add-dependencies]]))
-
-(def ^:private default-options {:src "resources"
-                                :output-extension ""
-                                :delete-output-dir true
-                                :auto-compile-delay 250
-                                :style :nested
-                               })
-
-(defn- normalize-hooks [options]
-  (let [hooks            (into #{} (:ignore-hooks options))
-        normalized-hooks (if (:compile hooks)
-                           (disj (conj hooks :once) :compile)
-                           hooks)]
-    (assoc options :ignore-hooks normalized-hooks)))
-
-(defn extract-options [project]
-  (if :sass project
-    (merge default-options (normalize-hooks options))
-    (println "No sass entry found in project definition.")))
 
 (defn- once [options]
   "Compiles files once"
