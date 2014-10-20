@@ -1,6 +1,8 @@
 (ns leiningen.tasks
   (:require [leiningen.lein-sass.renderer :refer :all]
             [leiningen.lein-sass.options :refer :all]
+            [leiningen.help :as lhelp]
+            [leiningen.core.main :as lmain]
             [cemerick.pomegranate :only [add-dependencies]]))
 
 (defn- once [options]
@@ -22,7 +24,7 @@
    :subtasks [once auto clean]}
 
   ([project]
-    (exit-failure (lhelp/help-for sass)))
+    ((resolve 'leiningen.core.main/abort) (lhelp/help-for "sass")))
 
   ([project subtask & args]
     (if-let [options (extract-options project)]
@@ -30,5 +32,5 @@
         "once"  (once options)
         "auto"  (auto options)
         "clean" (clean options)
-        (task-not-found subtask))
-      (exit-failure))))
+        (lmain/warn subtask " not found."))
+      ((resolve 'leiningen.core.main/abort) "Invalid options in project.clj."))))

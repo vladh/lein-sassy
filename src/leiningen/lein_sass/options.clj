@@ -1,4 +1,5 @@
-(ns leiningen.lein-haml-sass.options)
+(ns leiningen.lein-haml-sass.options
+  (:require [leiningen.core.main :as lmain]))
 
 (def ^:private default-options {:src "resources"
                                 :output-extension ""
@@ -19,4 +20,4 @@
 (defn extract-options [project]
   (if :sass project
     (merge default-options (normalize-hooks options))
-    (println "No sass entry found in project definition.")))
+    (lmain/warn "No sass entry found in project definition.")))

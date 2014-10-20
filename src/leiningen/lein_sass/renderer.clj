@@ -9,15 +9,23 @@
       (require-gem container (str (:gem-name sass-gem) "/engine"))
       (require-gem container (:gem-name sass-gem))))
 
-(defn render [template]
+(defn init-renderer []
   (let [container (make-container)
         runtime (make-runtime container)]
     (do (init-gems container)
-        (let [sass-options (make-rb-hash runtime {
-                :src-type :sass
-                :style :compressed})
-              args (to-array [template sass-options])
-              sass (run-ruby container "Sass::Engine")
-              engine (call-ruby-method container sass "new" args Object)]
-          (try (call-ruby-method container engine "render" String)
-               (catch Exception e (println "Compilation failed:" e)))))))
+        {:container container :runtime runtime})))
+
+(defn render [container runtime template]
+  (let [sass-options (make-rb-hash runtime {
+          :src-type :sass
+          :style :compressed})
+        args (to-array [template sass-options])
+        sass (run-ruby container "Sass::Engine")
+        engine (call-ruby-method container sass "new" args Object)]
+    (try (call-ruby-method container engine "render" String)
+         (catch Exception e (println "Compilation failed:" e)))))
+
+(defn render-all! [container runtime options watch?]
+  (loop []
+    (doseq [file-pair-descriptor (file-pairs-from (:src options))]
+      (render container runtime template))))
