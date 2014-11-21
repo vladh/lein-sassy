@@ -1,26 +1,9 @@
 # lein-sass
+Use Sass with Clojure. Includes (will include) support for Autoprefixer.
 
-Use Sass with Clojure. Includes support for Autoprefixer.
-
-## Usage
-
-FIXME: Use this for user-level plugins:
-
-Put `[lein-sass "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your
-`:user` profile, or if you are on Leiningen 1.x do `lein plugin install
-lein-sass 0.1.0-SNAPSHOT`.
-
-FIXME: Use this for project-level plugins:
-
-Put `[lein-sass "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your project.clj.
-
-FIXME: and add an example usage that actually makes sense:
-
-    $ lein sass
+## Credits
+This plugin was greatly inspired by [lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
 
 ## License
-
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Copyright © 2014 Vlad-Ștefan Harbuz
+Distributed under the Eclipse Public License version 1.0.

@@ -12,7 +12,7 @@
   :repositories [["gem-jars" "http://gemjars.org/maven"]
                  ["torquebox" "http://rubygems-proxy.torquebox.org/releases"]]
 
-  :profile {:example {:sass {:src "test/files"
-                             :dst "test/out"}}}
+  :profile {:example {:sass {:src "test/files-in"
+                             :dst "test/files-out"}}}
 
   :eval-in-leiningen true)
