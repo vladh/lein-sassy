@@ -2,13 +2,11 @@
   (:require [leiningen.core.main :as lmain]))
 
 (def ^:private default-options {:src "resources"
-                                :output-extension ""
-                                :delete-output-dir true
-                                :auto-compile-delay 250
+                                :dst ""
                                 :gem-name "sass"
                                 :gem-version "3.3.0"
-                                :style :nested
-                               })
+                                :src-type :sass
+                                :style :nested})
 
 (defn- normalize-hooks [options]
   (let [hooks            (into #{} (:ignore-hooks options))

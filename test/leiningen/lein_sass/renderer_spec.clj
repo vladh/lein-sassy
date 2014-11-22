@@ -7,11 +7,18 @@
               :src-type :sass
               :style :compressed})
 
+(def renderer-data (init-renderer))
+(def container (:container renderer-data))
+(def runtime (:runtime renderer-data))
+
 (deftest renderer
-  (let [{container :container runtime :runtime} (init-renderer)]
-    (testing "Renderer"
-      (testing "compiles basic SASS"
-        (is (= "body{background:red}\n"
-               (render container runtime options "body\n  background: red"))))
-      (testing "finds files and compiles them"
-        (is (= "" (render-all! container runtime options)))))))
+  (testing "Renderer"
+    (testing "compiles basic SASS"
+      (is (= "body{background:red}\n"
+             (render container runtime options "body\n  background: red"))))))
+
+(deftest renderer-watch
+  (testing "Renderer (watching)"
+    (testing "watches directory for changes"
+      (println container runtime options)
+      (watch-and-render! container runtime options))))
