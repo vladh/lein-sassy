@@ -1,12 +1,10 @@
 (ns leiningen.lein-sass.renderer
   (:require [leiningen.lein-sass.ruby :refer :all]
-            [clojure.string :refer [replace-first]]
+            [clojure.string :as s]
             [panoptic.core :refer :all]
-            [clojure.reflect :as r]
-            [clojure.pprint :refer [print-table]]
             [clojure.java.io :as io]))
 
-(def ^:private sass-extensions [:sass :scss])
+(def ^:private sass-extensions ["sass" "scss"])
 (def ^:private watch-poll-rate 50)
 
 (defn- init-gems
@@ -41,8 +39,9 @@
   (let [directory (clojure.java.io/file (:src options))
         files (remove #(.isDirectory %) (file-seq directory))]
     (doseq [file files]
-      (let [subpath (replace-first (.getPath file) (:src options) "")
-            outpath (str (:dst options) subpath) ;; TODO change extension to CSS
+      (let [subpath (s/replace-first (.getPath file) (:src options) "")
+            subpath (s/replace subpath (re-pattern (str ".(" (s/join "|" sass-extensions) ")$")) ".css")
+            outpath (str (:dst options) subpath)
             rendered (render container runtime options (slurp file))]
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
