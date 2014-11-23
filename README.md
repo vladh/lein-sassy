@@ -4,6 +4,7 @@ Use Sass with Clojure.
 **Under active development. Things to be done:**
 * Add Autoprefixer support.
 * Add examples in README.
+* Add more integration tests.
 
 ## Credits
 This plugin was greatly inspired by [lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
