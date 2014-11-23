@@ -6,24 +6,23 @@
             [clojure.pprint :refer [print-table]]
             [clojure.java.io :as io]))
 
-(def ^:private sass-gem {:gem-name "sass" :gem-version "3.3.0"}) ;; hardcoded
 (def ^:private sass-extensions [:sass :scss])
 (def ^:private watch-poll-rate 50)
 
 (defn- init-gems
   "Installs and loads the needed gems."
-  [container]
-  (do (install-gem (:gem-name sass-gem) (:gem-version sass-gem))
-      (require-gem container (str (:gem-name sass-gem) "/util"))
-      (require-gem container (str (:gem-name sass-gem) "/engine"))
-      (require-gem container (:gem-name sass-gem))))
+  [container options]
+  (do (install-gem (:gem-name options) (:gem-version options))
+      (require-gem container (str (:gem-name options) "/util"))
+      (require-gem container (str (:gem-name options) "/engine"))
+      (require-gem container (:gem-name options))))
 
 (defn init-renderer
   "Creates a container and runtime for the renderer to use."
-  []
+  [options]
   (let [container (make-container)
         runtime (make-runtime container)]
-    (do (init-gems container)
+    (do (init-gems container options)
         {:container container :runtime runtime})))
 
 (defn render

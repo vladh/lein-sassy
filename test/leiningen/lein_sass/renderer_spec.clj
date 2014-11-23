@@ -1,13 +1,15 @@
 (ns leiningen.lein-sass.renderer-spec
   (:require [clojure.test :refer :all]
+            [leiningen.lein-sass.options :refer :all]
             [leiningen.lein-sass.renderer :refer :all]))
 
-(def options {:src "test/files-in"
-              :dst "test/files-out"
-              :src-type :sass
-              :style :compressed})
+(def project {:sass {:src "test/files-in"
+                     :dst "test/files-out"
+                     :src-type :sass
+                     :style :compressed}})
+(def options (get-sass-options project))
 
-(def renderer-data (init-renderer))
+(def renderer-data (init-renderer options))
 (def container (:container renderer-data))
 (def runtime (:runtime renderer-data))
 
