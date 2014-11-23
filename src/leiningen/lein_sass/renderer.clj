@@ -10,22 +10,25 @@
 (def ^:private sass-extensions [:sass :scss])
 (def ^:private watch-poll-rate 50)
 
-(defn- init-gems [container]
+(defn- init-gems
   "Installs and loads the needed gems."
+  [container]
   (do (install-gem (:gem-name sass-gem) (:gem-version sass-gem))
       (require-gem container (str (:gem-name sass-gem) "/util"))
       (require-gem container (str (:gem-name sass-gem) "/engine"))
       (require-gem container (:gem-name sass-gem))))
 
-(defn init-renderer []
+(defn init-renderer
   "Creates a container and runtime for the renderer to use."
+  []
   (let [container (make-container)
         runtime (make-runtime container)]
     (do (init-gems container)
         {:container container :runtime runtime})))
 
-(defn render [container runtime options template]
+(defn render
   "Renders one template and returns the result."
+  [container runtime options template]
   (let [sass-options (make-rb-hash runtime (select-keys options [:src-type :style]))
         args (to-array [template sass-options])
         sass (run-ruby container "Sass::Engine")
@@ -33,8 +36,9 @@
     (try (call-ruby-method container engine "render" String)
          (catch Exception e (println "Compilation failed:" e)))))
 
-(defn render-all! [container runtime options]
+(defn render-all!
   "Renders all templates in the directory specified by (:src options)."
+  [container runtime options]
   (let [directory (clojure.java.io/file (:src options))
         files (remove #(.isDirectory %) (file-seq directory))]
     (doseq [file files]
@@ -44,14 +48,16 @@
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
 
-(defn- file-change-handler [container runtime options _1 _2 file]
+(defn- file-change-handler
   "Prints the file that was changed then renders all templates."
+  [container runtime options _1 _2 file]
   (do (println "File" (:path file) "changed.")
       (render-all! container runtime options)))
 
-(defn watch-and-render! [container runtime options]
+(defn watch-and-render!
   "Watches the directory specified by (:src options) and calls a handler that
   renders all templates."
+  [container runtime options]
   (println "Watching" (:src options) "for changes.")
   (let [handler (partial file-change-handler container runtime options)
         fw (->  (file-watcher)

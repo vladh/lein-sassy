@@ -17,7 +17,7 @@
       (is (= "body{background:red}\n"
              (render container runtime options "body\n  background: red"))))))
 
-(deftest renderer-watch
-  (testing "Renderer (watching)"
-    (testing "watches directory for changes"
-      (watch-and-render! container runtime options))))
+; (deftest renderer-watch
+;   (testing "Renderer (watching)"
+;     (testing "watches directory for changes"
+;       (watch-and-render! container runtime options))))

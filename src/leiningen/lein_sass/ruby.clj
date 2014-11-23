@@ -3,11 +3,12 @@
   (:import [org.jruby.embed ScriptingContainer LocalContextScope LocalVariableBehavior]
            [org.jruby RubyHash RubySymbol RubyArray]))
 
-(defn make-container []
+(defn make-container
   "Creates a Ruby scripting container, currently as a SINGLETON This ensures
   that context is preserved across threads, but may lead to issues. THREADSAFE
   means that the context must be recreated for every thread which is not
   what we want."
+  []
   (ScriptingContainer. LocalContextScope/SINGLETON LocalVariableBehavior/PERSISTENT))
 
 (defn make-runtime [container]
