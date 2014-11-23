@@ -20,5 +20,4 @@
 (deftest renderer-watch
   (testing "Renderer (watching)"
     (testing "watches directory for changes"
-      (println container runtime options)
       (watch-and-render! container runtime options))))

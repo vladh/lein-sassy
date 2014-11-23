@@ -2,6 +2,8 @@
   (:require [leiningen.lein-sass.ruby :refer :all]
             [clojure.string :refer [replace-first]]
             [panoptic.core :refer :all]
+            [clojure.reflect :as r]
+            [clojure.pprint :refer [print-table]]
             [clojure.java.io :as io]))
 
 (def ^:private sass-gem {:gem-name "sass" :gem-version "3.3.0"}) ;; hardcoded
@@ -33,6 +35,7 @@
 
 (defn render-all! [container runtime options]
   "Renders all templates in the directory specified by (:src options)."
+  (println "Rendering all templates")
   (let [directory (clojure.java.io/file (:src options))
         files (remove #(.isDirectory %) (file-seq directory))]
     (doseq [file files]
@@ -42,19 +45,19 @@
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
 
-(defn- file-change-handler [file container runtime options]
+(defn- file-change-handler [container runtime options file]
   "Prints the file that was changed then renders all templates."
   (do (println "File" (:path file) "changed.")
-      (println container runtime options)
       (render-all! container runtime options)))
 
 (defn watch-and-render! [container runtime options]
   "Watches the directory specified by (:src options) and calls a handler that
   renders all templates."
   (println "Watching" (:src options) "for changes")
-  (let [fw (->  (file-watcher)
-                (on-file-create #(file-change-handler %3 container runtime options))
-                (on-file-modify #(file-change-handler %3 container runtime options))
+  (let [handler (partial file-change-handler container runtime options)
+        fw (->  (file-watcher)
+                (on-file-create #(file-change-handler container runtime options %3))
+                (on-file-modify #(file-change-handler container runtime options %3))
                 (unwatch-on-delete)
                 (run!))
         dw (->  (directory-watcher :recursive true)

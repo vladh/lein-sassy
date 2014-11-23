@@ -1,10 +1,17 @@
 (ns leiningen.lein-sass.ruby
   (:require [cemerick.pomegranate :refer [add-dependencies]])
-  (:import [org.jruby.embed ScriptingContainer LocalContextScope]
+  (:import [org.jruby.embed ScriptingContainer LocalContextScope LocalVariableBehavior]
            [org.jruby RubyHash RubySymbol RubyArray]))
 
-(defn make-container [] (ScriptingContainer. LocalContextScope/THREADSAFE))
-(defn make-runtime [container] (-> (.getProvider container) .getRuntime))
+(defn make-container []
+  "Creates a Ruby scripting container, currently as a SINGLETON This ensures
+  that context is preserved across threads, but may lead to issues. THREADSAFE
+  means that the context must be recreated for every thread which is not
+  what we want."
+  (ScriptingContainer. LocalContextScope/SINGLETON LocalVariableBehavior/PERSISTENT))
+
+(defn make-runtime [container]
+  (-> (.getProvider container) .getRuntime))
 
 (defn make-rb-symbol [runtime string]
   (RubySymbol/newSymbol runtime (name string)))
