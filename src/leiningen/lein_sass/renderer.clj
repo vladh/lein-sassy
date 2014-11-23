@@ -35,7 +35,6 @@
 
 (defn render-all! [container runtime options]
   "Renders all templates in the directory specified by (:src options)."
-  (println "Rendering all templates")
   (let [directory (clojure.java.io/file (:src options))
         files (remove #(.isDirectory %) (file-seq directory))]
     (doseq [file files]
@@ -45,7 +44,7 @@
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
 
-(defn- file-change-handler [container runtime options file]
+(defn- file-change-handler [container runtime options _1 _2 file]
   "Prints the file that was changed then renders all templates."
   (do (println "File" (:path file) "changed.")
       (render-all! container runtime options)))
@@ -53,11 +52,11 @@
 (defn watch-and-render! [container runtime options]
   "Watches the directory specified by (:src options) and calls a handler that
   renders all templates."
-  (println "Watching" (:src options) "for changes")
+  (println "Watching" (:src options) "for changes.")
   (let [handler (partial file-change-handler container runtime options)
         fw (->  (file-watcher)
-                (on-file-create #(file-change-handler container runtime options %3))
-                (on-file-modify #(file-change-handler container runtime options %3))
+                (on-file-create handler)
+                (on-file-modify handler)
                 (unwatch-on-delete)
                 (run!))
         dw (->  (directory-watcher :recursive true)
