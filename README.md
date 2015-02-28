@@ -6,7 +6,11 @@ lein-sassy uses JRuby, so you need to have Ruby installed. You probably already
 do, though.
 
 ## Usage
-Add the following to your `project.clj`, using your CSS folders as appropriate.
+Add lein-sassy to your `project.clj`:
+
+[![Clojars Project](http://clojars.org/lein-sassy/latest-version.svg)](http://clojars.org/lein-sassy)
+
+Then add the following, using your CSS folders as appropriate.
 ```clojure
 :sass {:src "resources/app/stylesheets"
        :dst "resources/public/stylesheets"}
