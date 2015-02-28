@@ -1,8 +1,8 @@
 (ns leiningen.lein-sass.options
   (:require [leiningen.core.main :as lmain]))
 
-(def ^:private default-options {:src "resources"
-                                :dst ""
+(def ^:private default-options {:src "resources/public/stylesheets"
+                                :dst "resources/app/stylesheets"
                                 :gem-name "sass"
                                 :gem-version "3.3.0"
                                 :src-type :sass

@@ -1,15 +1,35 @@
 # lein-sass
 Use Sass with Clojure.
 
-**Under active development. Things to be done:**
+## Prerequisites
+lein-sass uses JRuby, so you need to have Ruby installed. You probably already
+do, though.
+
+## Usage
+Add the following to your `project.clj`, using your CSS folders as appropriate.
+```clojure
+:sass {:src "resources/app/stylesheets"
+       :dst "resources/public/stylesheets"}
+```
+
+To compile files once, use `lein sass once`.
+
+To watch files for changes, use `lein sass watch`.
+
+## What to do if it doesn't work
+If you have any trouble using lein-sass, especially if there are any Ruby
+issues, please [open an issue](https://github.com/vladh/lein-sass/issues/new).
+This helps me out a lot, as I can get feedback from people using various
+platforms in order to make lein-sass better.
+
+## To do
 * Add Autoprefixer support.
 * Add examples in README.
 * Add more integration tests.
 
-## Credits
-This plugin was greatly inspired by [lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
+## Credits and License
+This plugin was greatly inspired by
+[lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
 
-## License
-Copyright © 2014 Vlad-Ștefan Harbuz
-
+Author: Vlad-Ștefan Harbuz
 Distributed under the Eclipse Public License, the same as Clojure.
