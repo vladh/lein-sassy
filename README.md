@@ -30,5 +30,5 @@ platforms in order to make lein-sass better.
 This plugin was greatly inspired by
 [lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
 
-Author: Vlad-Ștefan Harbuz
-Distributed under the Eclipse Public License, the same as Clojure.
+Copyright Vlad-Ștefan Harbuz and distributed under the Eclipse Public
+License, the same as Clojure.
