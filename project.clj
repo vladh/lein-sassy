@@ -1,8 +1,11 @@
-(defproject lein-sass "1.0.0-SNAPSHOT"
+(defproject lein-sass "1.0.0"
   :description "Use Sass with Clojure."
   :url "https://github.com/vladh/lein-sass"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+
+  :scm {:name "git"
+        :url "https://github.com/vladh/lein-sass"}
 
   :dependencies [[org.jruby/jruby-complete "1.7.16"]
                  [com.cemerick/pomegranate "0.2.0"]
