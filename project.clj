@@ -1,5 +1,5 @@
 (defproject lein-sass "1.0.0-SNAPSHOT"
-  :description "Use Sass with Clojure. Includes support for Autoprefixer."
+  :description "Use Sass with Clojure."
   :url "https://github.com/vladh/lein-sass"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
