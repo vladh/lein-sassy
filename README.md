@@ -3,11 +3,11 @@ Use Sass with Clojure.
 
 ## Prerequisites
 lein-sassy uses JRuby, so you need to have Ruby installed. You probably already
-do, though. JRuby is also why lein-sassy should only be used as a development
+do, though. JRuby is also why the plugin should only be used as a development
 dependency, since you would always depend on it otherwise.
 
 ## Usage
-Add lein-sassy to your `project.clj` only as development dependency:
+Add the plugin to your `project.clj` only as development dependency:
 
 [![Clojars Project](http://clojars.org/lein-sassy/latest-version.svg)](http://clojars.org/lein-sassy)
 
