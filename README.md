@@ -24,7 +24,6 @@ platforms in order to make lein-sass better.
 
 ## To do
 * Add Autoprefixer support.
-* Add examples in README.
 * Add more integration tests.
 
 ## Credits and License
