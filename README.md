@@ -1,8 +1,8 @@
-# lein-sass
+# lein-sassy
 Use Sass with Clojure.
 
 ## Prerequisites
-lein-sass uses JRuby, so you need to have Ruby installed. You probably already
+lein-sassy uses JRuby, so you need to have Ruby installed. You probably already
 do, though.
 
 ## Usage
@@ -17,10 +17,10 @@ To compile files once, use `lein sass once`.
 To watch files for changes, use `lein sass watch`.
 
 ## What to do if it doesn't work
-If you have any trouble using lein-sass, especially if there are any Ruby
-issues, please [open an issue](https://github.com/vladh/lein-sass/issues/new).
+If you have any trouble using lein-sassy, especially if there are any Ruby
+issues, please [open an issue](https://github.com/vladh/lein-sassy/issues/new).
 This helps me out a lot, as I can get feedback from people using various
-platforms in order to make lein-sass better.
+platforms in order to make lein-sassy better.
 
 ## To do
 * Add Autoprefixer support.

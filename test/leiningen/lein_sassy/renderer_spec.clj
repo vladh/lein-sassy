@@ -1,7 +1,7 @@
-(ns leiningen.lein-sass.renderer-spec
+(ns leiningen.lein-sassy.renderer-spec
   (:require [clojure.test :refer :all]
-            [leiningen.lein-sass.options :refer :all]
-            [leiningen.lein-sass.renderer :refer :all]))
+            [leiningen.lein-sassy.options :refer :all]
+            [leiningen.lein-sassy.renderer :refer :all]))
 
 (def project {:sass {:src "test/files-in"
                      :dst "test/files-out"

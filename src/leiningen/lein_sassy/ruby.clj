@@ -1,4 +1,4 @@
-(ns leiningen.lein-sass.ruby
+(ns leiningen.lein-sassy.ruby
   (:require [cemerick.pomegranate :refer [add-dependencies]])
   (:import [org.jruby.embed ScriptingContainer LocalContextScope LocalVariableBehavior]
            [org.jruby RubyHash RubySymbol RubyArray]))

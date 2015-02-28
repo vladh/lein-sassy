@@ -1,5 +1,5 @@
-(ns leiningen.lein-sass.renderer
-  (:require [leiningen.lein-sass.ruby :refer :all]
+(ns leiningen.lein-sassy.renderer
+  (:require [leiningen.lein-sassy.ruby :refer :all]
             [clojure.string :as s]
             [panoptic.core :refer :all]
             [clojure.java.io :as io]))

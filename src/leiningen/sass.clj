@@ -1,6 +1,6 @@
 (ns leiningen.sass
-  (:require [leiningen.lein-sass.renderer :refer :all]
-            [leiningen.lein-sass.options :refer :all]
+  (:require [leiningen.lein-sassy.renderer :refer :all]
+            [leiningen.lein-sassy.options :refer :all]
             [leiningen.help :as lhelp]
             [leiningen.core.main :as lmain]
             [cemerick.pomegranate :only [add-dependencies]]))

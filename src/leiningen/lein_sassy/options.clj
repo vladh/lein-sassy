@@ -1,4 +1,4 @@
-(ns leiningen.lein-sass.options
+(ns leiningen.lein-sassy.options
   (:require [leiningen.core.main :as lmain]))
 
 (def ^:private default-options {:src "resources/public/stylesheets"
