@@ -7,7 +7,12 @@ do, though. JRuby is also why the plugin should only be used as a development
 dependency, since you would always depend on it otherwise.
 
 ## Usage
-Add the plugin to your `project.clj` only as development dependency:
+Add the plugin to your `project.clj`, using the appropriate version:
+
+```clj
+(defproject narwhal-endearment-manager "0.1.0-SNAPSHOT"
+  :plugins [[lein-haml-sass "version-from-below-goes-here"]])
+```
 
 [![Clojars Project](http://clojars.org/lein-sassy/latest-version.svg)](http://clojars.org/lein-sassy)
 
@@ -16,6 +21,8 @@ Then add the following, using your CSS folders as appropriate.
 :sass {:src "resources/app/stylesheets"
        :dst "resources/public/stylesheets"}
 ```
+
+Finally, run `lein deps` to download everything.
 
 To compile files once, use `lein sass once`.
 
