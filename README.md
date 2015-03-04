@@ -28,6 +28,18 @@ To compile files once, use `lein sass once`.
 
 To watch files for changes, use `lein sass watch`.
 
+## Options
+The sass section in `project.clj` takes various options:
+
+* `:src`: The source folder, defaults to "resources/public/stylesheets"
+* `:dst`: The destination folder, defaults to "resources/app/stylesheets"
+* `:gem-name`: Defaults to "sass"
+* `:gem-version`: Defaults to "3.2.14"
+* `:style`: Output style, `:nested`, `:expanded` or `:compact`. Defaults to
+`:nested`.
+* `:syntax`: Force the syntax ,which is normally inferred from the file
+extension. Either `:sass` or `:scss`, not present in defaults.
+
 ## What to do if it doesn't work
 If you have any trouble using lein-sassy, especially if there are any Ruby
 issues, please [open an issue](https://github.com/vladh/lein-sassy/issues/new).
