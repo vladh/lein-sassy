@@ -35,7 +35,7 @@
     (try
       (add-dependencies :coordinates [[gem-id gem-version]]
                         :repositories (merge cemerick.pomegranate.aether/maven-central
-                                             {"gem-jars" "http://gemjars.org/maven"}))
+                                             {"gem-jars" "http://deux.gemjars.org"}))
       (catch Exception e false))))
 
 (defn- download-gem-using-torquebox [gem-name gem-version]
