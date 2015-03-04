@@ -7,6 +7,20 @@
 (def ^:private sass-extensions ["sass" "scss"])
 (def ^:private watch-poll-rate 50)
 
+(defn- get-file-extension [file]
+  (when file
+    (let [filename (.getPath file)
+          dot (.lastIndexOf filename ".")]
+      (when (pos? dot)
+        (subs filename (inc dot))))))
+
+(defn- get-syntax
+  "Gets the syntax given a file and options hash. If the hash defines the
+  syntax, return that. Otherwise, return the file's extension."
+  [file options]
+  (or (:syntax options)
+      (get-file-extension file)))
+
 (defn- init-gems
   "Installs and loads the needed gems."
   [container options]
@@ -26,7 +40,7 @@
 (defn render
   "Renders one template and returns the result."
   [container runtime options template]
-  (let [sass-options (make-rb-hash runtime (select-keys options [:src-type :style]))
+  (let [sass-options (make-rb-hash runtime (select-keys options [:syntax :style]))
         args (to-array [template sass-options])
         sass (run-ruby container "Sass::Engine")
         engine (call-ruby-method container sass "new" args Object)]
@@ -42,7 +56,8 @@
       (let [subpath (s/replace-first (.getPath file) (:src options) "")
             subpath (s/replace subpath (re-pattern (str ".(" (s/join "|" sass-extensions) ")$")) ".css")
             outpath (str (:dst options) subpath)
-            rendered (render container runtime options (slurp file))]
+            syntax (get-syntax file options)
+            rendered (render container runtime (merge options {:syntax syntax}) (slurp file))]
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
 

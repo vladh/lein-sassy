@@ -5,7 +5,6 @@
                                 :dst "resources/app/stylesheets"
                                 :gem-name "sass"
                                 :gem-version "3.2.14"
-                                :src-type :sass
                                 :style :nested})
 
 (defn get-sass-options [project]
