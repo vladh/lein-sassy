@@ -5,7 +5,7 @@
 
 (def project {:sass {:src "test/files-in"
                      :dst "test/files-out"
-                     :src-type :sass
+                     :syntax :sass
                      :style :compressed}})
 (def options (get-sass-options project))
 
