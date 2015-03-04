@@ -35,10 +35,10 @@ The sass section in `project.clj` takes various options:
 * `:dst`: The destination folder, defaults to "resources/app/stylesheets"
 * `:gem-name`: Defaults to "sass"
 * `:gem-version`: Defaults to "3.2.14"
-* `:style`: Output style, `:nested`, `:expanded` or `:compact`. Defaults to
+* `:style`: [`:nested`|`:expanded`|`:compact`] Output style. Defaults to
 `:nested`.
-* `:syntax`: Force the syntax ,which is normally inferred from the file
-extension. Either `:sass` or `:scss`, not present in defaults.
+* `:syntax`: [`:sass`|`:scss`] Force the syntax, which is normally inferred
+from the file extension. Not present in defaults.
 
 ## What to do if it doesn't work
 If you have any trouble using lein-sassy, especially if there are any Ruby
