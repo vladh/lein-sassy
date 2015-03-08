@@ -1,25 +1,11 @@
 (ns leiningen.lein-sassy.renderer
   (:require [leiningen.lein-sassy.ruby :refer :all]
+            [leiningen.lein-sassy.file-utils :refer :all]
             [clojure.string :as s]
             [panoptic.core :refer :all]
             [clojure.java.io :as io]))
 
-(def ^:private sass-extensions ["sass" "scss"])
 (def ^:private watch-poll-rate 50)
-
-(defn- get-file-extension [file]
-  (when file
-    (let [filename (.getPath file)
-          dot (.lastIndexOf filename ".")]
-      (when (pos? dot)
-        (subs filename (inc dot))))))
-
-(defn- get-syntax
-  "Gets the syntax given a file and options hash. If the hash defines the
-  syntax, return that. Otherwise, return the file's extension."
-  [file options]
-  (or (:syntax options)
-      (get-file-extension file)))
 
 (defn- init-gems
   "Installs and loads the needed gems."
@@ -51,12 +37,12 @@
   "Renders all templates in the directory specified by (:src options)."
   [container runtime options]
   (let [directory (clojure.java.io/file (:src options))
-        files (remove #(.isDirectory %) (file-seq directory))]
+        files (filter is-sass-file (file-seq directory))]
     (doseq [file files]
       (let [subpath (s/replace-first (.getPath file) (:src options) "")
-            subpath (s/replace subpath (re-pattern (str ".(" (s/join "|" sass-extensions) ")$")) ".css")
+            subpath (change-sass-filename-to-css subpath)
             outpath (str (:dst options) subpath)
-            syntax (get-syntax file options)
+            syntax (get-file-syntax file options)
             rendered (render container runtime (merge options {:syntax syntax}) (slurp file))]
         (if-not (.exists (io/file (.getParent (io/file outpath)))) (io/make-parents outpath))
         (spit outpath rendered)))))
