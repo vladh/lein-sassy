@@ -14,8 +14,20 @@
 (defn is-sass-file
   "Returns whether or not a file ends in a sass extension."
   [file]
-  (and (not (.isDirectory file))
+  (and (.isFile file)
        (.contains sass-extensions (get-file-extension file))))
+
+(defn is-partial
+  "Returns whether or not a file is a partial (i.e. starts with an
+  underscore)."
+  [file]
+  (.startsWith (.getName file) "_"))
+
+(defn is-compilable-sass-file
+  "Returns whether or not a file is a sass file that can be compiled (i.e.
+  not a partial)."
+  [file]
+  (and (is-sass-file file) (not (is-partial file))))
 
 (defn get-file-syntax
   "Gets the syntax given a file and options hash. If the hash defines the

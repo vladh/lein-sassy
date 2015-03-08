@@ -40,7 +40,7 @@
   "Renders all templates in the directory specified by (:src options)."
   [container runtime options]
   (let [directory (clojure.java.io/file (:src options))
-        files (filter is-sass-file (file-seq directory))
+        files (filter is-compilable-sass-file (file-seq directory))
         directories (filter #(.isDirectory %) (file-seq directory))
         load-paths (conj (map #(.getPath %) directories) (:src options))
         options (merge options {:load_paths load-paths})]
