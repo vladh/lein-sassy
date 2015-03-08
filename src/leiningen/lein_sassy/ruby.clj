@@ -26,7 +26,7 @@
   (let [rb-hash (RubyHash. runtime)]
     (doseq [[k v] clj-hash]
       (let [key (make-rb-symbol runtime k)
-            value (if (coll? v) (make-rb-array v) (make-rb-symbol runtime v))]
+            value (if (coll? v) (make-rb-array runtime v) (make-rb-symbol runtime v))]
         (.put rb-hash key value)))
     rb-hash))
 

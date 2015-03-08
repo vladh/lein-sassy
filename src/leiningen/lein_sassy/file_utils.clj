@@ -24,7 +24,7 @@
   (or (:syntax options)
       (get-file-extension file)))
 
-(defn change-sass-filename-to-css
+(defn sass-filename-to-css
   "Changes a sass extension to the css extension."
   [filename]
   (s/replace filename (re-pattern (str ".(" (s/join "|" sass-extensions) ")$")) css-extension))
