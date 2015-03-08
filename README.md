@@ -2,6 +2,7 @@
 Use Sass with Clojure.
 
 * Suports both Sass (indent-based) and SCSS (regular) syntax
+* Supports partials and imports
 * Watches for file changes
 
 ## Prerequisites
