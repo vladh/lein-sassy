@@ -32,17 +32,35 @@ To compile files once, use `lein sass once`.
 
 To watch files for changes, use `lein sass watch`.
 
+To remove generated files, run `lein sass clean`.
+
 ## Options
 The sass section in `project.clj` takes various options:
 
 * `:src`: The source folder, defaults to "resources/public/stylesheets"
 * `:dst`: The destination folder, defaults to "resources/app/stylesheets"
+* `:delete-output-dir`: Whether lein sass clean deletes the output directory or only included files. Defaults to `true`.
 * `:gem-name`: Defaults to "sass"
 * `:gem-version`: Defaults to "3.2.14"
-* `:style`: [`:nested`|`:expanded`|`:compact`] Output style. Defaults to
+* `:style`: [`:nested`|`:expanded`|`:compact`|`:compressed`] Output style. Defaults to
 `:nested`.
 * `:syntax`: [`:sass`|`:scss`] Force the syntax, which is normally inferred
 from the file extension. Not present in defaults.
+
+## Hooks
+
+The following hooks are supported by lein-sassy:
+
+```
+$ lein compile
+$ lein clean
+```
+
+To enable the hooks, add the following to your `project.clj` file:
+
+```clj
+:hooks [leiningen.sass]
+```
 
 ## What to do if it doesn't work
 If you have any trouble using lein-sassy, especially if there are any Ruby
@@ -56,7 +74,7 @@ platforms in order to make lein-sassy better.
 
 ## Credits and License
 This plugin was greatly inspired by
-[lein-haml-sass](https://github.com/rtircher/lein-haml-sass).
+[lein-haml-sass](https://github.com/rtircher/lein-haml-sass) and contains contributions from [lein-sass](https://github.com/101loops/lein-sass).
 
 Copyright Vlad-Ștefan Harbuz and distributed under the Eclipse Public
 License, the same as Clojure.
