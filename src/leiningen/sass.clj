@@ -13,6 +13,7 @@
 (defn- watch
   "Automatically recompile when files are modified."
   [container runtime options]
+  (render-all! container runtime options)
   (watch-and-render! container runtime options))
 
 (defn sass
@@ -28,6 +29,6 @@
       (let [{container :container runtime :runtime} (init-renderer options)]
         (case subtask
           "once" (once container runtime options)
-          "watch" (watch container runtime options)
+          (or "auto" "watch") (watch container runtime options)
           (lmain/warn subtask " not found.")))
       ((resolve 'leiningen.core.main/abort) "Invalid options in project.clj."))))

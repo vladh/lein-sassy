@@ -1,4 +1,5 @@
 (ns leiningen.lein-sassy.renderer
+  (:refer-clojure :exclude [run!])
   (:require [leiningen.lein-sassy.ruby :refer :all]
             [leiningen.lein-sassy.file-utils :refer :all]
             [clojure.string :as s]
@@ -59,14 +60,14 @@
 (defn- file-change-handler
   "Prints the file that was changed then renders all templates."
   [container runtime options _1 _2 file]
-  (do (print-message "File" (:path file) "changed.")
+  (do (print-message "File " (:path file) " changed.")
       (render-all! container runtime options)))
 
 (defn watch-and-render!
   "Watches the directory specified by (:src options) and calls a handler that
   renders all templates."
   [container runtime options]
-  (print-message "Watching" (:src options) "for changes.")
+  (print-message "Watching " (:src options) " for changes.")
   (let [handler (partial file-change-handler container runtime options)
         fw (->  (file-watcher)
                 (on-file-create handler)
