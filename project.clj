@@ -9,11 +9,13 @@
 
   :dependencies [[org.jruby/jruby-complete "1.7.16"]
                  [com.cemerick/pomegranate "0.2.0"]
-                 [panoptic "0.2.1"]]
+                 [panoptic "0.2.1"]
+                 [me.raynes/fs "1.4.6"]]
 
   :profiles {:dev {:dependencies [[org.rubygems/sass "3.2.14"]]
                    :repositories [["gem-jars" "http://deux.gemjars.org"]]}
              :example {:sass {:src "test/files-in"
                               :dst "test/files-out"}}}
 
-  :eval-in-leiningen true)
+  :eval-in-leiningen true
+)
