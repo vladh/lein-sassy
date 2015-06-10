@@ -1,4 +1,4 @@
-(defproject lein-sassy "1.0.6"
+(defproject lein-sassy "1.0.7"
   :description "Use Sass with Clojure."
   :url "https://github.com/vladh/lein-sassy"
   :license {:name "Eclipse Public License"
