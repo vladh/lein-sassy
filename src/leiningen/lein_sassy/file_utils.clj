@@ -6,12 +6,9 @@
 (def ^:private sass-extensions ["sass" "scss"])
 (def ^:private css-extension ".css")
 
-(defn get-file-extension [file]
-  (when file
-    (let [filename (.getPath file)
-          dot (.lastIndexOf filename ".")]
-      (when (pos? dot)
-        (subs filename (inc dot))))))
+(defn file-extension
+  [file]
+  (some-> (.getPath file) fs/extension (subs 1)))
 
 (defn is-sass-file
   "Returns whether or not a file ends in a sass extension."
