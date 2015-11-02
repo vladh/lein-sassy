@@ -3,8 +3,8 @@
             [me.raynes.fs :as fs]
             [clojure.java.io :as io]))
 
-(def ^:private sass-extensions ["sass" "scss"])
-(def ^:private css-extension ".css")
+(def sass-extensions #{"sass" "scss"})
+(def css-extension "css")
 
 (defn file-extension
   [file]
