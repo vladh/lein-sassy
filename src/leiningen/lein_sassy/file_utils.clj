@@ -10,19 +10,19 @@
   [file]
   (some-> (.getPath file) fs/extension (subs 1)))
 
-(defn is-sass-file
+(defn sass-file?
   "Returns whether or not a file ends in a sass extension."
   [file]
   (and (.isFile file)
        (.contains sass-extensions (get-file-extension file))))
 
-(defn is-partial
+(defn partial-sass-file?
   "Returns whether or not a file is a partial (i.e. starts with an
   underscore)."
   [file]
   (.startsWith (.getName file) "_"))
 
-(defn is-compilable-sass-file
+(defn compilable-sass-file?
   "Returns whether or not a file is a sass file that can be compiled (i.e.
   not a partial)."
   [file]
@@ -33,7 +33,7 @@
   syntax, return that. Otherwise, return the file's extension."
   [file options]
   (or (:syntax options)
-      (get-file-extension file)))
+      (file-extension file)))
 
 (defn sass-filename-to-css
   "Changes a sass extension to the css extension."
