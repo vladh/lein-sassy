@@ -60,10 +60,6 @@
        (assoc sass-mapping sass-file (dest-file sass-file src dst)))
      {} sass-files)))
 
-(defn ensure-exists
-  [dir]
-  (and dir (.exists (io/file dir))))
-
 (defn dir-empty?
   [dir]
   (not (reduce (fn [memo path] (or memo (.isFile path))) false (file-seq (io/file dir)))))
@@ -89,6 +85,6 @@
     (delete-file! (io/file dest-file))
     (delete-file! (io/file (map-file dest-file))))
 
-  (when (and delete-output-dir (ensure-exists dst) (dir-empty? dst))
+  (when (and delete-output-dir (fs/exists? dst) (dir-empty? dst))
     (println (str "Destination folder " dst " is empty - Deleting it"))
     (delete-directory-recursively! dst)))
