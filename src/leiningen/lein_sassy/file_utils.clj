@@ -13,8 +13,7 @@
 (defn sass-file?
   "Returns whether or not a file ends in a sass extension."
   [file]
-  (and (.isFile file)
-       (.contains sass-extensions (get-file-extension file))))
+  (contains? sass-extensions (file-extension file)))
 
 (defn partial-sass-file?
   "Returns whether or not a file is a partial (i.e. starts with an
