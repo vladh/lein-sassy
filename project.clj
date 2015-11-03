@@ -17,5 +17,4 @@
              :example {:sass {:src "test/files-in"
                               :dst "test/files-out"}}}
 
-  :eval-in-leiningen true
-)
+  :eval-in-leiningen true)

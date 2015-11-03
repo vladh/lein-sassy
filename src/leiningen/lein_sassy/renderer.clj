@@ -41,7 +41,7 @@
   "Renders all templates in the directory specified by (:src options)."
   [container runtime options]
   (let [directory (clojure.java.io/file (:src options))
-        files (filter is-compilable-sass-file (file-seq directory))
+        files (filter compilable-sass-file? (file-seq directory))
         directories (filter #(.isDirectory %) (file-seq directory))
         load-paths (conj (map #(.getPath %) directories) (:src options))
         options (merge options {:load_paths load-paths})]
@@ -50,7 +50,7 @@
             options (merge options {:syntax syntax})
             inpath (.getPath file)
             insubpath (s/replace-first inpath (:src options) "")
-            outsubpath (sass-filename-to-css insubpath)
+            outsubpath (filename-to-css insubpath)
             outpath (str (:dst options) outsubpath)
             rendered (render container runtime options (slurp file))]
         (print-message inpath " to " outpath)
