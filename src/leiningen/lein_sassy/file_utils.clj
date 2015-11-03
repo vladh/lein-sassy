@@ -62,7 +62,8 @@
 
 (defn dir-empty?
   [dir]
-  (not (reduce (fn [memo path] (or memo (.isFile path))) false (file-seq (io/file dir)))))
+  (not-any? #(.isFile %)
+            (file-seq (io/file dir))))
 
 (defn delete-file!
   [file]
