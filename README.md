@@ -15,7 +15,7 @@ Add the plugin to your `project.clj`, using the appropriate version:
 
 ```clj
 (defproject narwhal-endearment-manager "0.1.0-SNAPSHOT"
-  :plugins [[lein-haml-sass "version-from-below-goes-here"]])
+  :plugins [[lein-sassy "version-from-below-goes-here"]])
 ```
 
 [![Clojars Project](http://clojars.org/lein-sassy/latest-version.svg)](http://clojars.org/lein-sassy)
