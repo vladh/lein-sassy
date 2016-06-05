@@ -49,7 +49,7 @@
       (let [syntax (get-file-syntax file options)
             options (merge options {:syntax syntax})
             inpath (.getPath file)
-            insubpath (s/replace-first inpath (:src options) "")
+            insubpath (s/replace-first (.replaceAll inpath "\\\\" "/") (.replaceAll (:src options) "\\\\" "/") "")
             outsubpath (filename-to-css insubpath)
             outpath (str (:dst options) outsubpath)
             rendered (render container runtime options (slurp file))]
