@@ -1,9 +1,13 @@
 # lein-sassy
+
 Use Sass with Clojure.
 
 * Suports both Sass (indent-based) and SCSS (regular) syntax
 * Supports partials and imports
 * Watches for file changes
+
+lein-sassy is no longer maintained, and there are probably better alternatives
+out there.
 
 ## Prerequisites
 lein-sassy uses JRuby, so you need to have Ruby installed. You probably already
